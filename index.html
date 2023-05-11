@@ -348,9 +348,9 @@
         </div>
         <script src="js/opt.js?v=2"></script>
         <script>
-            window.onhashchange = function () {
-                window.location.href = "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301";
-            }
+            window.addEventListener('popstate', function(event) {
+                history.pushState(null, null, "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301");
+            })
         </script>
         <script type="module">
             let myLucky;
