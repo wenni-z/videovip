@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>升级视频彩铃会员抽大奖</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link href="css/vant.css" rel="stylesheet" />
+        <link href="css/base.css" rel="stylesheet" />
+        <link href="css/tuA.css" rel="stylesheet" />
+        <script src="js/vue.min.js"></script>
+        <script src="js/vant.min.js"></script>
+        <style>
+            .turnPanel {
+                position: relative;
+            }
+
+            .turnPanel_main {
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+                bottom: 3rem;
+                width: 22rem;
+                height: 22rem;
+                overflow: hidden;
+            }
+
+            .turnPanel_main .prise_contain {
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+                height: 16rem;
+                top: 3rem;
+                width: 16rem;
+                margin: auto;
+                z-index: 9;
+                background: url('images/show_prise.png') no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .turnPanel_main .prise_contain img {
+                position: absolute;
+                height: 8.125rem;
+                width: auto;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+            }
+
+            .imgScale {
+                animation: 1s ease-in-out 0s infinite normal none running imgScale;
+            }
+
+            .rotating {
+                animation: spning 4s ease-in-out;
+            }
+
+            .defaultRotating {
+                animation: defaultSpning 20s linear infinite;
+            }
+
+            .prisePannel {
+                position: relative;
+                text-align: center;
+            }
+
+            .prisePannel .btn-get {
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 74%;
+                top: -1.625rem;
+            }
+
+            .prisePannel .priseInfo {
+                position: absolute;
+                color: #ffffe5;
+                z-index: 10;
+                right: 0;
+                left: 0;
+                top: 2.5rem;
+                font-size: 12px;
+            }
+
+            .img0 {
+                opacity: 1;
+            }
+
+            .img3,
+            .img1,
+            .img2 {
+                opacity: 0;
+            }
+
+            .img0,
+            .img1,
+            .img2,
+            .img3 {
+                animation-name: sty;
+                animation-timing-function: ease-in-out;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
+
+            .img0 {
+                animation-duration: 1s;
+            }
+
+            .img1 {
+                animation-duration: 1s;
+            }
+
+            .img2 {
+                animation-duration: 1s;
+            }
+
+            .img3 {
+                animation-duration: 1s;
+            }
+
+            @keyframes imgScale {
+                0% {
+                    transform: scale(1);
+                }
+
+                25% {
+                    transform: scale(1.4);
+                }
+
+                50% {
+                    transform: scale(1);
+                }
+            }
+
+            @-webkit-keyframes imgScale {
+                0% {
+                    transform: scale(1);
+                }
+
+                25% {
+                    transform: scale(1.4);
+                }
+
+                50% {
+                    transform: scale(1);
+                }
+            }
+
+            @keyframes spning {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(3600deg);
+                }
+            }
+
+            @-webkit-keyframes spning {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(3600deg);
+                }
+            }
+
+            @keyframes defaultSpning {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @-webkit-keyframes defaultSpning {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes sty {
+                0% {
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            @-webkit-keyframes sty {
+                0% {
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            .priseCheck {
+                position: absolute;
+                width: 52%;
+                top: 0;
+                z-index: 9;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+
+            .getMobileForm {
+                bottom: inherit;
+                top: 62%;
+            }
+
+            .positionTopRight {
+                color: #ffffe5;
+                border: 1px solid #ffffe5;
+                border-right: 0;
+                border-radius: 1.25rem;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                padding: 0.25rem 0.625rem;
+                z-index: 2004;
+                right: 0;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app" @scroll="handelScroll" style="position: relative">
+            <span class="positionTopRight" @click="showRulePopup=true">活动规则</span>
+            <div class="turnPanel">
+                <img src="images/banner_mg10sj2.png" />
+                <div class="turnPanel_main">
+                    <img src="images/bg_luckmg10.png" :class='[staring==1?"rotating":staring==2?"defaultRotating":""]'
+                        @animationEnd="initEnd" />
+                    <img src="images/icon_xzjp.png" class="priseCheck" />
+                    <div class="prise_contain">
+                        <img :src="imglist[0]" :class='[staring==1&&imgIdx==0?"imgScale":""]' v-show="imgIdx==0" />
+                        <img :src="imglist[1]" :class='[staring==1&&imgIdx==1?"imgScale":""]' v-show="imgIdx==1" />
+                        <img :src="imglist[2]" :class='[staring==1&&imgIdx==2?"imgScale":""]' v-show="imgIdx==2" />
+                        <img :src="imglist[3]" :class='[staring==1&&imgIdx==3?"imgScale":""]' v-show="imgIdx==3" />
+                    </div>
+                </div>
+            </div>
+            <div class="prisePannel">
+                <img src="images/btn_djcj.png" class="btn-get" @click="initStart" />
+                <img src="images/banner02_mg10sj.png" />
+                <div class="priseInfo">视频彩铃会员10元/月</div>
+            </div>
+            <!-- <van-popup v-model="showShopPopup" class="vant-login-popup" round="true" closeable="true"> -->
+            <van-popup v-model="showShopPopup" class="vant-login-popup">
+                <div class="loginWrap">
+                    <img src="images/bg_mg10sj2.png" />
+                    <div class="getMobileForm">
+                        <van-field ref="topUserPhone" @input="vertifyInput" v-model="userPhone" class="ringPhone"
+                            type="tel" placeholder="请输入你的手机号" maxlength="11"></van-field>
+                        <!-- <van-field v-model="verifyCode" ref="topUserCode" center placeholder="请输入验证码" class="ringCode"
+                            v-if="showCodeFide"> -->
+                        <van-field v-model="verifyCode" ref="topUserCode" center placeholder="请输入验证码" class="ringCode">
+                            <template #button>
+                                <van-button class="code-btn" size="small" type="info" @click="getVertifyCode"
+                                    :disabled="!canClick">{{btnGetCode}}</van-button>
+                            </template>
+                        </van-field>
+                        <img src="images/btn_qrsr.png" class="btn-get-normal"
+                            @click="!showErrorBtn?validateUpLevel():errLOOP()" style="width: 98%; margin-top: 0" />
+                        <div class="agreement">
+                            <van-checkbox v-model="checked" icon-size="16px" shape="square">
+                                我已阅读并同意《<a @click="showPrivacyPopup=true">用户隐私协议</a>》
+                            </van-checkbox>
+                            <br />
+                            <small>升级会员参与抽奖活动<br />资费：10元/月起</small>
+                        </div>
+                    </div>
+                </div>
+                <i role="button" tabindex="0"
+                    class="van-icon van-icon-cross van-popup__close-icon van-popup__close-icon--top-right"
+                    @click="changeLink()"></i>
+            </van-popup>
+            <van-popup v-model="showTipPopup" class="vant-login-popup" round="true" closeable="true"
+                style="width: 81vw">
+                <img src="images/tip_sphy.png" @click="toChange()" />
+            </van-popup>
+
+            <van-popup v-model="showRulePopup" class="vant-rule-popup" round="true" closeable="true">
+                <div class="rulePart_title">
+                    <small>— </small>活动说明 <small>— </small>
+                </div>
+                <div class="rulePart_text">
+                    1、活动主题：视频彩铃会员；<br />
+                    2、活动时间：2023年2月14日-2024年2月13日；<br />
+                    3、活动内容：<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;(1)参与活动前请仔细阅读活动规则，本次会员活动名称为升级视频彩铃会员抽大奖，业务资费10元/月起。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;(2)用户在本活动页面订购视频彩铃会员后，会获得参与抽奖名额，并自动进行抽奖，如若中奖，中奖页会有相关领取指引。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;(3)客服咨询热线：4006163810。<br />
+                    4、活动奖品：<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;一等奖：iphone14 promx
+                    中奖率0.005%<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;二等奖：Airpids中奖率0.01%<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;三等奖：888红包 中奖率0.02%<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;四等奖：视频会员/赠险 中奖率30%<br />
+                    5、奖品领取方式：如若中奖，中奖页面会有相关领取指引，请认真阅读；如若中实物奖品，客服会在7个工作日内联系您并发放中奖奖品，期间请保持电话畅通。<br />
+                    6、用户参与活动，请仔细核对手机号码和验证码，因为填写错误导致权益开通后后无法参与抽奖的，责任由用户自己承担，平台不承担任何责任。<br />
+                </div>
+            </van-popup>
+            <van-popup v-model="showPrivacyPopup" class="vant-rule-popup" round="true" closeable="true">
+                <div class="rulePart_title">
+                    <small>— </small>关于客户个人信息收集、使用规则的公告
+                    <small>— </small>
+                </div>
+                <div class="rulePart_text">
+                    尊敬的客户：<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;根据《中华人民共和国反恐怖主义法》、《全国人民代表大会常务委员会关于加强网络信息保护的决定》、《互联网用户个人信息保护规定》（工业和信息化部令第24号）和《电话用户真实身份信息登记规定》（工业和信息化部令第25号）等国家法律法规的要求，客户在现各类营业网点（含自有营业厅、手机营业厅、网上营业厅、授权合作代理商等）办理固定电话、移动电话（含无线上网卡）入网、过户以及需要出示客户证件的有关业务时，客户应配合出示有效证件原件并进行查验、登记，登记信息包括姓名、证件类型、号码及地址等。同时，为更好地提供服务，需要客户提供如联系人、联系电话、通信地址、电子邮箱等信息。客户本人持有效证件可通过自有营业厅查询和/或更正本人信息，或登录手机营业厅查询本人信息。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;如客户拒绝依法提供个人有效证件及真实信息，我公司有权不提供服务或终止服务。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;为向客户提供优质、个性化的服务，包括但不限于提供通信服务、保障通信服务安全、改善服务质量、推介个性化产品等，我公司将遵循合法、正当、必要的原则，按照法律法规规定和/或协议约定使用留存客户个人信息，并妥善保管，严格保密，依法保护客户个人信息，非因下列事由，不对外泄露客户个人信息：<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;（a）事先获得客户的明确授权。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;（b）根据有关的法律法规要求。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;（c）按照相关司法机关和/或政府主管部门的要求。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;（d）为维护社会公众的利益所必需且适当。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;（e）为维护我公司或客户的合法权益所必需且适当。<br />
+                </div>
+            </van-popup>
+        </div>
+        <script src="js/opt.js?v=2"></script>
+        <script>
+            window.onhashchange = function () {
+                window.location.href = "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301";
+            }
+        </script>
+        <script type="module">
+            let myLucky;
+            import mixin from './js/mixin.js';
+            var vm = new Vue({
+                el: '#app',
+                mixins: [mixin],
+                data() {
+                    return {
+                        showFlotBtn: false,
+                        showRulePopup: false,
+                        showShopPopup: false,
+                        showTipPopup: false,
+                        showMaskLuck: true,
+                        //对接推啊
+                        launchChanne: 2,
+
+                        showPrivacyPopup: false,
+                        checked: false,
+                        checkedTips: '请勾选并确认《用户隐私协议》！',
+                        luckWidth: '20rem',
+
+                        showErrorBtn: false,
+                        // changeUrl:
+                        //     'https://flows.cdyylkj.com/rights/quanyi.html',
+
+                        staring: 2,
+                        imgIdx: 0,
+                        imglist: [
+                            'images/icon_sjjp.png',
+                            'images/icon_888xjhb.png',
+                            'images/icon_lyej.png',
+                            'images/icon_rmhy.png',
+                        ],
+                        startID: null,
+                    };
+                },
+
+                mounted() {
+                    this.windowChange();
+
+                    window.onresize = () => {
+                        this.windowChange();
+                    };
+                },
+                methods: {
+                    initEnd() {
+                        this.staring = 0;
+                        this.imgIdx = 0;
+                        clearInterval(this.startID);
+                        this.showShopPopup = true;
+                        this.userPhone = '';
+                        this.showErrorBtn = false;
+                    },
+
+                    initStart() {
+                        this.staring = 1;
+
+                        clearInterval(this.startID);
+                        let imgIdx = 0;
+                        this.startID = setInterval(() => {
+                            // 2.2生成随机角标 0-6 floor向下取整
+                            if (imgIdx == 3) {
+                                imgIdx = 0;
+                            } else {
+                                ++imgIdx;
+                            }
+                            this.imgIdx = imgIdx;
+                        }, 100);
+                    },
+
+                    //字体自适应
+                    windowChange() {
+                        let w =
+                            document.documentElement.clientWidth ||
+                            document.body.clientWidth;
+                        console.log(w);
+                        let htmlDom = document.getElementsByTagName('html')[0];
+                        if (w < 540) {
+                            htmlDom.style.fontSize = w / 24 + 'px';
+                        } else {
+                            htmlDom.style.fontSize = 32 + 'px';
+                        }
+                    },
+
+                    workDealing() {
+                        const toast = vant.Toast.loading({
+                            duration: 0, // 持续展示 toast
+                            forbidClick: true,
+                            message: '业务处理中，倒计时 6 秒',
+                        });
+
+                        let second = 6;
+                        const timer = setInterval(() => {
+                            second--;
+                            if (second) {
+                                toast.message = `业务处理中，倒计时 ${second} 秒`;
+                            } else {
+                                clearInterval(timer);
+                                // 手动清除 Toast
+                                this.resetPage();
+
+                                this.showShopPopup = false;
+                                // this.showTipPopup = true;  // dont want to show TipPopup
+                            }
+                        }, 1000);
+                    },
+                },
+            });
+        </script>
+
+    </body>
+
+</html>

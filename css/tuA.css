@@ -1,0 +1,102 @@
+.loginWrap {
+	position: relative;
+}
+.getMobileForm {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 0;
+	width: 70%;
+}
+.luckyWeel {
+	position: relative;
+	width: 100%;
+	overflow-x: hidden;
+}
+#my-lucky,
+.btn-luck,
+.mask-luck {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+#my-lucky {
+	bottom: 9.75rem;
+}
+.btn-luck {
+	bottom: 16.62rem;
+	height: 6.26rem;
+	width: auto;
+	z-index: 99;
+	animation: 2s ease-in-out 0s infinite normal none running
+		scaleDrew;
+}
+.mask-luck {
+	width: 20rem;
+	height: 20rem;
+	z-index: 98;
+	bottom: 9.75rem;
+	animation: 8s ease-in-out 0s infinite normal none running spin;
+}
+.pay {
+	left: 0;
+	top: 0;
+	width: 20%;
+	height: 6%;
+	z-index: 99;
+}
+.videoList {
+	padding: 0 6px 0 6px;
+	background: #ffffff;
+	width: 96%;
+	box-sizing: border-box;
+	margin: auto;
+	margin-bottom: 1.25rem;
+	border-radius: 0.625rem;
+}
+.videoList_til {
+	width: 60%;
+	margin-bottom: 20px;
+}
+
+.ringCode {
+	height: 44px;
+	padding-right: 6px;
+}
+
+.ringPhone {
+	height: 44px;
+	line-height: 44px;
+}
+.code-btn {
+	border-radius: 10px;
+	padding: 10px 12px;
+	font-size: 14px;
+	margin: 0 0 0 10px;
+}
+.fee {
+	position: absolute;
+	bottom: 1.625rem;
+	width: 100%;
+	text-align: center;
+	color: #eee;
+	font-size: 13px;
+}
+.fee p {
+	margin-bottom: 3rem;
+}
+.agreement {
+	padding-top: 0;
+	color: #eee;
+}
+
+.van-checkbox__icon--checked .van-icon {
+	color: #fff;
+	background-color: #ffc92a;
+	border-color: #ffc92a;
+}
+.agreement .van-checkbox__label {
+	font-size: 13px;
+}
