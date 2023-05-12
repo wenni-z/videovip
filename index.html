@@ -348,21 +348,15 @@
         </div>
         <script src="js/opt.js?v=2"></script>
         <script>
-            var hiddenProperty = 'hidden' in document ? 'hidden' :
-                'webkitHidden' in document ? 'webkitHidden' :
-                    'mozHidden' in document ? 'mozHidden' :
-                        null;
-            var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-            var onVisibilityChange = function () {
-                if (document[hiddenProperty]) {
-                    console.log('页面非激活');
-                } else {
-                    console.log('页面激活')
-                    history.pushState(null, null, "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301");
-                    history.replaceState(null, null, "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301");
-                }
-            }
-            document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+            window.addEventListener(
+                'popstate', 
+                function (event) {
+                    window.location.href = "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301"
+                // history.pushState(null, null, "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301");
+                // history.replaceState(null, null, "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301");
+                },
+                false,
+            )
         </script>
         <script type="module">
             let myLucky;
