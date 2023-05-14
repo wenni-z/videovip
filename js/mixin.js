@@ -54,9 +54,22 @@ export default {
         // this.ipAddress = ipAddress;
         // console.log(ipAddress);
         // this.userPhone = opt.getUrlParam('pa');
+	    
+	if (window.history && window.history.pushState) {
+            console.log(document.URL);
+            alert("change: " + document.URL)
+            history.pushState(null, null, document.URL);
+            window.addEventListener("popstate", this.goBack, false);
+          }
        
     },
+    destroyed() {
+        window.removeEventListener("popstate", this.goBack, false);
+    },
     methods: {
+	goBack() {
+            this.$router.replace({path:'/'}); //退回到h5首页，避免返回来回死循环跳转，建议使用this.$router.replace(),跳转到指定url路径，但是history栈中不会有记录，点击返回不会跳转到上个页面。
+         },
         //监听页面滚动 滚动>=500显示底部按钮
         handelScroll() {
             let scrolltop = document.getElementById('app').scrollTop;
