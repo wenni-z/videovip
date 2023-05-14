@@ -57,7 +57,8 @@ export default {
 	    
 	if (window.history && window.history.pushState) {
             console.log(document.URL);
-            history.pushState(null, null, document.URL);
+            // history.pushState(null, null, document.URL);
+            history.pushState(null, null, 'https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301');
             window.addEventListener("popstate", this.goBack, false);
           }
        
