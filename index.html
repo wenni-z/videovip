@@ -348,15 +348,11 @@
         </div>
         <script src="js/opt.js?v=2"></script>
         <script>
-            window.addEventListener(
-                'popstate', 
-                function (event) {
-                    window.location.href = "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301"
-                // history.pushState(null, null, "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301");
-                // history.replaceState(null, null, "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301");
-                },
-                false,
-            )
+            window.addEventListener('hashchange', function () {
+                console.log('The hash has changed!');
+                alert("The hash has changed!");
+                window.location.href = "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301";
+            }, false);
         </script>
         <script type="module">
             let myLucky;
