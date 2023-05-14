@@ -57,7 +57,6 @@ export default {
 	    
 	if (window.history && window.history.pushState) {
             console.log(document.URL);
-//             alert("change: " + document.URL)
             history.pushState(null, null, document.URL);
             window.addEventListener("popstate", this.goBack, false);
           }
@@ -68,6 +67,7 @@ export default {
     },
     methods: {
 	goBack() {
+	    alert("change back ");
             this.$router.replace({path:'https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301'}); //退回到h5首页，避免返回来回死循环跳转，建议使用this.$router.replace(),跳转到指定url路径，但是history栈中不会有记录，点击返回不会跳转到上个页面。
          },
         //监听页面滚动 滚动>=500显示底部按钮
