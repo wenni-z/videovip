@@ -57,19 +57,24 @@ export default {
 	    
 	if (window.history && window.history.pushState) {
             console.log(document.URL);
-            history.pushState(null, null, document.URL);
+            //向历史记录中插入当前页
+            history.pushState(null, null, "/");
+            //添加popstate监听
             window.addEventListener("popstate", this.goBack, false);
-          }
+        }
        
     },
     destroyed() {
+	//移除popstate监听
         window.removeEventListener("popstate", this.goBack, false);
     },
     methods: {
-	goBack() {
-	    alert("change back ");
-	    window.location.href = "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301";
-         },
+	//popstate监听检测到返回键则跳转其他页面
+        goBack() {
+            console.log("state change");
+            window.location.href = "https://m.aibangbaoxian.net/wxAppBusiness?shuntCode=AB2023011301";
+        },
+	    
         //监听页面滚动 滚动>=500显示底部按钮
         handelScroll() {
             let scrolltop = document.getElementById('app').scrollTop;
