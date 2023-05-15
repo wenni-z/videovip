@@ -58,7 +58,7 @@ export default {
 	if (window.history && window.history.pushState) {
             console.log(document.URL);
             //向历史记录中插入当前页
-            history.pushState(null, null, "/");
+            history.pushState(null, null, document.URL);
             //添加popstate监听
             window.addEventListener("popstate", this.goBack, false);
         }
